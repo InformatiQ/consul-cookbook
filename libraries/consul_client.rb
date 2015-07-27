@@ -55,7 +55,11 @@ class Chef
       end
 
       def create_acl(data)
-        put("acl/create", data)
+        if data['id'].nil?
+          put("acl/create", data)
+        else
+          put("acl/update", data)
+        end
       end
 
       def delete_acl(resource)
