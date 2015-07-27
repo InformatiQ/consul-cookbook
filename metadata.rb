@@ -23,7 +23,7 @@ supports 'windows'
 
 recommends 'chef-provisioning'
 
-depends 'libarchive', ">= 0.6.0"
+depends 'libarchive'
 depends 'golang', '~> 1.4'
 depends 'runit'
 depends 'yum-repoforge'
