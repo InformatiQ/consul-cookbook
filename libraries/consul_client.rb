@@ -24,7 +24,7 @@ class Chef
         if response.code.to_i == 403
           raise "Authentication Error"
         elsif response.code.to_i != 200
-          raise "Failed to process request #{uri} #{response.inspect}"
+          raise "Failed to process request url: #{uri} body: #{request.body} response: #{response.inspect}"
         end
         response
       end
