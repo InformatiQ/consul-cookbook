@@ -29,6 +29,7 @@ attribute :check, kind_of: Hash, default: nil, callbacks: {
     Chef::Resource::ConsulServiceDef.validate_check(check)
   end
 }
+attribute :acl_token, kind_of: String, default: nil
 
 def self.validate_check(check)
   unless check.is_a?(Hash)
@@ -68,5 +69,6 @@ def to_hash
   hash[:service][:port]  = port unless port.nil?
   hash[:service][:tags]  = tags unless tags.nil?
   hash[:service][:check] = check unless check.nil?
+  hash[:service][:token] = acl_token unless acl_token.nil?
   hash
 end
