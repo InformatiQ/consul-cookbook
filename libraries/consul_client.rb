@@ -46,16 +46,16 @@ class Chef
 
       def get_acl_by_name(resource)
         acls = get('acl/list')
-        acls.select { |acl| acl['Name'] == resource }[0]
+        acls.find { |acl| acl['Name'] == resource }
       end
 
       def get_acl_by_ID(resource)
         acls = get("acl/info/#{resource}")
-        acls.select { |acl| acl['ID'] == resource }[0]
+        acls.find { |acl| acl['ID'] == resource }
       end
 
       def create_acl(data)
-        if data['id'].nil?
+        if data['ID'].nil?
           put("acl/create", data)
         else
           put("acl/update", data)

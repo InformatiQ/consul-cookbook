@@ -21,14 +21,16 @@ action :create do
     data['Rules'] = new_resource.rules
     data['ID'] = new_resource.id unless new_resource.id.nil?
     block { client.create_acl(data) }
-    only_if { !@current_resource || update_required? }
+    only_if {
+      !current_resource || update_required?(current_resource, new_resource)
+    }
   end
 end
 
 action :delete do
   ruby_block new_resource do
-    block { @client.delete_acl(@new_resource.name) }
-    only_if { @current_resource }
+    block { client.delete_acl(new_resource.name) }
+    only_if { current_resource }
   end
 end
 
@@ -40,6 +42,6 @@ def load_current_resource
   @current_resource = client.get_acl_by_name(@new_resource.name)
 end
 
-def update_required?
-  @current_resource['Rules'] == @new_resource['Rules'] && @current_resource['Type'] == @new_resource['Type']
+def update_required?(current_resource, new_resource)
+  current_resource['Rules'] != new_resource.rules || current_resource['Type'] != new_resource.type
 end
