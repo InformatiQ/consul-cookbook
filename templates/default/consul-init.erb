@@ -67,7 +67,7 @@ case "$1" in
     if is_running; then
         echo -n "Stopping $NAME..."
         CONSULPID=`get_pid`
-        /bin/kill -INT "$CONSULPID" >/dev/null 2>&1
+        /bin/kill -TERM "$CONSULPID" >/dev/null 2>&1
         ret=$?
         if [ $ret -eq 0 ]; then
             TIMEOUT="$STOPTIMEOUT"
