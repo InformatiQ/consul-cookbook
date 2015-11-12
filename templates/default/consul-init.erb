@@ -67,6 +67,7 @@ case "$1" in
     if is_running; then
         echo -n "Stopping $NAME..."
         CONSULPID=`get_pid`
+        # see motivation_for_hard_restart.md of the consul cookbook for details
         /bin/kill -TERM "$CONSULPID" >/dev/null 2>&1
         ret=$?
         if [ $ret -eq 0 ]; then
