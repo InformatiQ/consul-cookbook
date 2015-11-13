@@ -16,6 +16,10 @@
 #
 
 if node['platform'] == 'windows'
+  Chef::Recipe.send(:include, Chocolatey::Helpers)
+
+  node.default['consul']['install_dir']    = "#{chocolatey_install}\\lib\\consul.#{node['consul']['version']}"
+  node.default['consul']['etc_config_dir'] = "#{chocolatey_install}\\lib\\consul.#{node['consul']['version']}\\tools"
 
   include_recipe 'chocolatey::default'
 

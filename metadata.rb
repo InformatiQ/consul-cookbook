@@ -31,4 +31,4 @@ depends 'packagecloud'
 
 # for windows
 depends 'windows'
-depends "chocolatey"
+depends "chocolatey", '> 0.4'

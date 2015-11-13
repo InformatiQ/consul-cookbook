@@ -86,8 +86,7 @@ when 'windows'
   default['consul']['init_style']     = 'windows'
   default['consul']['config_dir']     = "#{ENV['SystemDrive']}\\ProgramData\\consul\\config"
   default['consul']['data_dir']       = "#{ENV['SystemDrive']}\\ProgramData\\consul\\data"
-  default['consul']['install_dir']    = "#{ChocolateyHelpers.chocolatey_install}\\lib\\consul.#{node['consul']['version']}"
-  default['consul']['etc_config_dir'] = "#{ChocolateyHelpers.chocolatey_install}\\lib\\consul.#{node['consul']['version']}\\tools"
+  # install and config_dir will be configured in install_windows recipe
 when 'debian'
   default['consul']['etc_config_dir'] = '/etc/default/consul'
 when 'rhel'
