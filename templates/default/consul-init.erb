@@ -52,9 +52,10 @@ case "$1" in
         while [ $TIMEOUT -gt 0 ]; do
             if is_running; then
                 break
-                sleep 1
-                let TIMEOUT=${TIMEOUT}-1
             fi
+            echo -n "."
+            sleep 1
+            let TIMEOUT=${TIMEOUT}-1
         done
         if [ $TIMEOUT -eq 0 ]; then
             echo "Unable to start $NAME, see $LOGFILE"
