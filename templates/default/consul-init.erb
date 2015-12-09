@@ -37,6 +37,10 @@ is_running() {
     [ -f "$PIDFILE" ] && ps `get_pid` > /dev/null 2>&1
 }
 
+check_config() {
+    <%= Chef::Consul.active_binary(node) %> configtest -config-dir <%= node['consul']['config_dir'] %>
+}
+
 case "$1" in
     start)
     if is_running; then
@@ -99,6 +103,12 @@ case "$1" in
     fi
     ;;
     restart)
+    if check_config; then
+        echo "Config check passed."
+    else
+        echo "Config check failed, aborting restart."
+        exit 1
+    fi
     $0 stop
     if is_running; then
         echo "Unable to stop $NAME, will not attempt to start"
@@ -115,6 +125,12 @@ case "$1" in
     fi
     ;;
     reload)
+    if check_config; then
+        echo "Config check passed."
+    else
+        echo "Config check failed, aborting reload."
+        exit 1
+    fi
     if is_running; then
         echo -n "Reloading $NAME..."
         kill -HUP `get_pid`
