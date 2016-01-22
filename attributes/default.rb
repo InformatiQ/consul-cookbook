@@ -66,6 +66,12 @@ default['consul']['checksums'] = {
   '0.5.2_linux_amd64'  => '171cf4074bfca3b1e46112105738985783f19c47f4408377241b868affa9d445',
   '0.5.2_windows_386'  => '2e866812de16f1a6138a0fd1eebc76143f1314826e3b52597a55ac510ae94be6',
   '0.5.2_web_ui'       => 'ad883aa52e1c0136ab1492bbcedad1210235f26d59719fb6de3ef6464f1ff3b1',
+
+  '0.6.3_darwin_amd64' => '6dff4ffc61d66aacd627a176737b8725624718a9e68cc81460a3df9b241c7932',
+  '0.6.3_linux_386'    => '2afb65383ab913344daaa9af827c1e8576c7cae16e93798048122929b6e4cc92',
+  '0.6.3_linux_amd64'  => 'b0532c61fec4a4f6d130c893fd8954ec007a6ad93effbe283a39224ed237e250',
+  '0.6.3_windows_386'  => '55733a730c5055d0ed1dc2656b2b6a27b21c7c361a907919cfae90aab2dff870',
+  '0.6.3_web_ui'       => '93bbb300cacfe8de90fb3bd5ede7d37ae6ce014898edc520b9c96a676b2bbb72',
 }
 default['consul']['source_revision'] = 'master'
 default['consul']['use_packagecloud_repo'] = true
