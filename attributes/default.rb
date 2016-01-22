@@ -15,11 +15,11 @@
 # limitations under the License.
 #
 
-default['consul']['base_url']       = "https://dl.bintray.com/mitchellh/consul/%{version}.zip"
 default['consul']['version']        = '0.5.2'
 if node['platform_family'] == 'windows'
   default['consul']['version']      = '0.5.0'
 end
+default['consul']['base_url']       = "https://dl.bintray.com/mitchellh/consul/%{version}.zip"
 default['consul']['install_method'] = 'binary'
 default['consul']['install_dir']    = '/usr/local/bin'
 default['consul']['choco_source']   = "https://chocolatey.org/api/v2/"
@@ -82,10 +82,10 @@ default['consul']['retry_on_join'] = false
 
 # In the cluster mode, set the default cluster size to 3
 default['consul']['bootstrap_expect'] = 3
-default['consul']['data_dir'] = '/var/lib/consul'
-default['consul']['config_dir'] = '/etc/consul.d'
-default['consul']['logfile'] = '/var/log/consul.log'
-default['consul']['init_style'] = 'init'   # 'init', 'runit', 'systemd'
+default['consul']['config_dir']       = '/etc/consul.d'
+default['consul']['data_dir']         = '/var/lib/consul'
+default['consul']['logfile']          = '/var/log/consul.log'
+default['consul']['init_style']       = 'init'   # 'init', 'runit', 'systemd'
 case node['platform_family']
 when 'windows'
   default['consul']['install_method'] = 'windows'
@@ -136,14 +136,17 @@ default['consul']['data_bag_encrypt_item'] = 'encrypt'
 # Gossip encryption
 default['consul']['encrypt_enabled'] = false
 default['consul']['encrypt']         = nil
+
 # TLS support
 default['consul']['verify_incoming'] = false
 default['consul']['verify_outgoing'] = false
+
 # Cert in pem format
 default['consul']['ca_cert']   = nil
 default['consul']['ca_path']   = "%{config_dir}/ca.pem"
 default['consul']['cert_file'] = nil
 default['consul']['cert_path'] = "%{config_dir}/cert.pem"
+
 # Cert in pem format. It can be unique for each host
 default['consul']['key_file']      = nil
 default['consul']['key_file_path'] = "%{config_dir}/key.pem"
@@ -160,8 +163,8 @@ default['consul']['extra_params'] = {}
 
 # Atlas support
 default['consul']['atlas_autojoin'] = false
-default['consul']['atlas_cluster'] = nil
-default['consul']['atlas_token'] = nil
+default['consul']['atlas_cluster']  = nil
+default['consul']['atlas_token']    = nil
 
 # Init script startup delay
 default['consul']['startup_sleep'] = 3
