@@ -23,6 +23,24 @@ if node['platform'] == 'windows'
 
   include_recipe 'chocolatey::default'
 
+  # stop consul if we want to upgrade the version
+  service 'stop consul before upgrade' do
+    service_name 'consul'
+    action :stop
+    not_if do
+      begin
+        cmd = Mixlib::ShellOut.new('consul --version')
+        cmd.run_command
+        !!(cmd.stdout =~ /v#{node['consul']['version']}/)
+      rescue => e
+        Chef::Log.warn("Error while find consul version")
+        Chef::Log.warn e
+        true # error means consul is not installed
+      end
+    end
+  end
+
+
   chocolatey 'consul' do
     version node['consul']['version']
     source node['consul']['choco_source']

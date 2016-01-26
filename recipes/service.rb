@@ -300,6 +300,7 @@ when 'systemd'
 when 'windows'
   # Windows service for consul has been create by Chocolatey and
   # config is managed by the chocolatey package
+
   service 'consul' do
     subscribes :restart, "file[#{consul_config_filename}]"
   end
