@@ -45,13 +45,7 @@ module ConsulCookbook
       end
 
       def action_reload
-        notifying_block do
-          execute 'Reload consul' do
-            command 'consul.exe reload' + (new_resource.acl_token ? " -token=#{new_resource.acl_token}" : '')
-            cwd ::File.dirname(new_resource.program)
-            action :run
-          end
-        end
+        action_restart
       end
 
       def action_restart
