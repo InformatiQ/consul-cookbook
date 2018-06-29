@@ -66,6 +66,7 @@ module ConsulCookbook
       attribute(:disable_host_node_id, equal_to: [true, false])
       attribute(:disable_remote_exec, equal_to: [true, false])
       attribute(:disable_update_check, equal_to: [true, false])
+      attribute(:discovery_max_stale, kind_of: String)
       attribute(:dns_config, kind_of: [Hash, Mash])
       attribute(:domain, kind_of: String)
       attribute(:enable_debug, equal_to: [true, false])
@@ -201,6 +202,7 @@ module ConsulCookbook
           watches
         )
 
+        for_keeps << %i(discovery_max_stale) if node['consul']['version'] > '1.0.6'
         for_keeps << %i(bootstrap bootstrap_expect) if server
         for_keeps << %i(ca_file cert_file key_file) if tls?
         for_keeps = for_keeps.flatten
