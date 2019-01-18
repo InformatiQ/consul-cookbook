@@ -74,9 +74,13 @@ module ConsulCookbook
       attribute(:encrypt_verify_incoming, equal_to: [true, false])
       attribute(:encrypt_verify_outgoing, equal_to: [true, false])
       attribute(:http_api_response_headers, kind_of: [Hash, Mash])
+      attribute(:http_config, kind_of: [Hash, Mash])
       attribute(:key_file, kind_of: String)
       attribute(:leave_on_terminate, equal_to: [true, false])
       attribute(:log_level, equal_to: %w(INFO DEBUG WARN ERR))
+      attribute(:log_file, kind_of: String)
+      attribute(:log_rotate_bytes, kind_of: Integer)
+      attribute(:log_rotate_duration, kind_of: String)
       attribute(:node_id, kind_of: String)
       attribute(:node_name, kind_of: String)
       attribute(:performance, kind_of: [Hash, Mash])
@@ -156,8 +160,12 @@ module ConsulCookbook
           encrypt_verify_incoming
           encrypt_verify_outgoing
           http_api_response_headers
+          http_config
           leave_on_terminate
           log_level
+          log_file
+          log_rotate_bytes
+          log_rotate_duration
           node_name
           node_id
           performance
