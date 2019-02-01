@@ -65,7 +65,7 @@ module ConsulCookbook
       def action_disable
         notifying_block do
           nssm 'consul' do
-            action %i[stop remove]
+            action %i(stop remove)
           end
 
           file new_resource.config_file do
