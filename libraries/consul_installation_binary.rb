@@ -53,7 +53,10 @@ module ConsulCookbook
             destination new_path
             source_properties checksum: options[:archive_checksum]
             strip_components 0
-            not_if { ::File.exist?(new_path) && ::File.size(consul_program) > 0 }
+            not_if do
+              ::File.exist?(new_path) &&
+                (::File.exist?(consul_program) && ::File.size(consul_program) > 0)
+            end
           end
 
           link '/usr/local/bin/consul' do
