@@ -48,12 +48,12 @@ module ConsulCookbook
           end
 
           url = format(options[:archive_url], version: options[:version], basename: options[:archive_basename])
-	  new_path = join_path(options[:extract_to], new_resource.version)
+          new_path = join_path(options[:extract_to], new_resource.version)
           poise_archive url do
-	    destination new_path
+            destination new_path
             source_properties checksum: options[:archive_checksum]
             strip_components 0
-	    not_if { ::File.exist?(new_path) && ::File.size(consul_program) > 0 } 
+            not_if { ::File.exist?(new_path) && ::File.size(consul_program) > 0 }
           end
 
           link '/usr/local/bin/consul' do
