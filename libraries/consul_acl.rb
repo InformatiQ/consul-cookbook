@@ -91,7 +91,12 @@ module ConsulCookbook
 
       def up_to_date?
         retry_block(max_tries: 3, sleep: 0.5) do
-          old_acl = Diplomat::Acl.info(new_resource.to_acl['ID'], nil, :return)
+          require 'diplomat/version'
+          old_acl = if Diplomat::VERSION > '2.1.0'
+                      Diplomat::Acl.info(new_resource.to_acl['ID'], {}, nil, :return)
+                    else
+                      Diplomat::Acl.info(new_resource.to_acl['ID'], nil, :return)
+                    end
           return false if old_acl.nil? || old_acl.empty?
           old_acl.first.select! { |k, _v| %w(ID Type Name Rules).include?(k) }
           old_acl.first == new_resource.to_acl
