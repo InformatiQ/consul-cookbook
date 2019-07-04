@@ -1,0 +1,78 @@
+---
+# The following environment variables are required:
+# - AWS_ACCESS_KEY_ID
+# - AWS_SECRET_ACCESS_KEY
+# - AWS_SSH_KEY_ID
+# - AWS_REGION
+#
+# Optional environment variables:
+# - AWS_SECURITY_GROUP
+# - AWS_SUBNET
+
+<% puts "Loading local environment variables from '.env' files"; require 'dotenv'; Dotenv.load; %>
+<% ENV['AWS_SSH_KEY_ID'] = ENV['AWS_SSH_KEY_ID'] || ENV['CRITEO_USER'] || ENV['USER']; %>
+<% fail "ERROR: Was not able to establish the value to use for ENV['AWS_SSH_KEY_ID']" if ( ENV['AWS_SSH_KEY_ID'].nil? || ENV['AWS_SSH_KEY_ID'].empty? ) %>
+
+driver:
+  name: ec2
+  instance_type: t2.medium
+  associate_public_ip: true
+  iam_profile_name: test-kitchen
+  retryable_tries: 120 # * retryable_sleep (default = 5s) = 600s before fail
+  region: <%= ENV['AWS_REGION'] || 'us-east-1' %>
+  tags:
+    created-by: <%= ENV['AWS_SSH_KEY_ID'] %>
+  subnet_filter:
+    tag:   'Name'
+    value: <%= ENV['AWS_SUBNET'] || 'chef-testing-closedsource-gw-vpc-subnet' %>
+  security_group_filter:
+    tag:   'Name'
+    value: <%= ENV['AWS_SECURITY_GROUP'] || 'node-security-group' %>
+  block_device_mappings:
+    - device_name: /dev/sda1
+      ebs:
+        volume_type: gp2
+        delete_on_termination: true
+transport:
+  ssh_key: <%= ENV['AWS_JENKINS_PRIVATE_KEY'] || File.join(ENV['HOME'], '.ssh/id_rsa') %>
+
+provisioner:
+  name: chef_zero
+  install_msi_url: http://filer.criteo.preprod/chef-client.msi
+  chef_omnibus_url: http://filer.criteo.preprod/omnibus_install.sh
+  client_rb:
+    rubygems_url: https://filer-rubygems.prod.crto.in
+
+  attributes:
+    kitchen_ohai:
+      values:
+        location:
+          datacenter: PAR
+    authorization:
+      sudo:
+        users:
+          - centos
+        passwordless: true
+        include_sudoers_d: true
+
+platforms:
+- name: centos-7
+  transport:
+    name: speedy_ssh
+  driver:
+    image_search:
+      owner-id: "847342425178"
+      name: "criteo-centos7-quick-ami-20180305-*"
+
+- name: windows-2016
+  transport:
+    elevated: true
+    elevated_username: System
+    elevated_password: null
+  driver:
+    instance_type: t2.medium
+    image_search:
+      name: "Windows_Server-2016-English-Full-Base-*"
+
+suites:
+<%= require 'erubis'; Erubis::Eruby.new(File.read('.kitchen_suites.yml')).evaluate if File.exists?('.kitchen_suites.yml') %>

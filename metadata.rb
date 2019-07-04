@@ -14,7 +14,6 @@ supports 'redhat', '>= 6.4'
 supports 'ubuntu', '>= 12.04'
 supports 'solaris2'
 supports 'arch'
-supports 'windows'
 
 depends 'build-essential'
 depends 'nssm', '>= 3.42.0'

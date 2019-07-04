@@ -18,4 +18,14 @@ group :development do
   gem 'github_changelog_generator', require: false
   gem 'webmock', '~> 3.1'
   gem 'chefspec', '7.2.1'
+  gem 'kitchen-ec2', git: 'https://github.com/criteo-forks/kitchen-ec2.git', branch: 'criteo'
+  gem 'dotenv'
+end
+
+group :ec2 do
+  gem 'chef-dk', git: 'https://github.com/criteo-forks/chef-dk.git', branch: 'strict_update_backport'
+  gem 'kitchen-transport-speedy'
+  gem 'test-kitchen'
+  gem 'winrm',       '>= 1.6'
+  gem 'winrm-fs',    '>= 0.3'
 end
