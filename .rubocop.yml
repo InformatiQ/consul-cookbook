@@ -39,7 +39,7 @@ Style/Documentation:
     - 'spec/**/*'
     - 'test/**/*'
     - 'libraries/helpers.rb'
-Style/GuardClause:Style/Documentation:
+Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
