@@ -1,5 +1,68 @@
 ---
+AllCops:
+  Exclude:
+    - 'test/spec/**/*'
+    - Rakefile
+    - Policyfile.rb
+
+Bundler/OrderedGems:
+  Exclude:
+    - 'Gemfile'
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - 'libraries/consul_service_windows.rb'
+
+Metrics/AbcSize:
+  Max: 132
+Metrics/BlockLength:
+  Max: 110
+Metrics/ClassLength:
+  Max: 220
+Metrics/CyclomaticComplexity:
+  Max: 132
+Metrics/LineLength:
+  Max: 130
+Metrics/MethodLength:
+  Max: 150
+Metrics/PerceivedComplexity:
+  Max: 35
+
+Naming/HeredocDelimiterNaming:
+  Enabled: false
+Naming/MemoizedInstanceVariableName:
+  Exclude:
+    - 'libraries/consul_installation.rb'
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'libraries/helpers.rb'
+Style/GuardClause:Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'libraries/helpers.rb'
 Style/GuardClause:
   Enabled: false
+Style/IfUnlessModifier:
+  Exclude:
+    - 'libraries/consul_service.rb'
+    - 'recipes/default.rb'
+Style/InverseMethods:
+  Exclude:
+    - 'libraries/consul_service_windows.rb'
 Style/ModuleFunction:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  Exclude:
+    - 'Rakefile'
+    - 'libraries/consul_acl.rb'
+    - 'libraries/consul_config.rb'
+    - 'libraries/consul_definition.rb'
+    - 'libraries/consul_service_windows.rb'
+    - 'libraries/consul_watch.rb'
+    - 'test/spec/libraries/consul_definition_spec.rb'
+Style/TrailingCommaInHashLiteral:
   Enabled: false

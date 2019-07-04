@@ -18,4 +18,5 @@ group :development do
   gem 'github_changelog_generator', require: false
   gem 'webmock', '~> 3.1'
   gem 'chefspec', '7.2.1'
+  gem 'rubocop', '~> 0.55.0'
 end
