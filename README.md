@@ -1,6 +1,5 @@
-# Consul Cookbook
-[![Build Status](https://travis-ci.org/johnbellone/consul-cookbook.svg?branch=master)](https://travis-ci.org/johnbellone/consul-cookbook)
-[![Code Quality](https://img.shields.io/codeclimate/github/johnbellone/consul-cookbook.svg)](https://codeclimate.com/github/johnbellone/consul-cookbook)
+# Consul Cookbook (Criteo-Fork)
+[![Build Status](https://api.travis-ci.com/criteo-forks/consul-cookbook.svg?branch=criteo)](https://travis-ci.com/criteo-forks/consul-cookbook)
 [![Cookbook Version](https://img.shields.io/cookbook/v/consul.svg)](https://supermarket.chef.io/cookbooks/consul)
 [![License](https://img.shields.io/badge/license-Apache_2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 
