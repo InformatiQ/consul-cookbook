@@ -16,7 +16,7 @@ supports 'solaris2'
 supports 'arch'
 supports 'windows'
 
-depends 'build-essential'
+depends 'build-essential' # ~FC121
 depends 'nssm', '>= 3.42.0'
 depends 'golang'
 depends 'poise', '~> 2.2'
