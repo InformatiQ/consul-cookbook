@@ -9,6 +9,11 @@ Bundler/OrderedGems:
   Exclude:
     - 'Gemfile'
 
+Layout/AlignHash:
+  Enabled: false
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
 Lint/AmbiguousBlockAssociation:
   Exclude:
     - 'libraries/consul_service_windows.rb'
