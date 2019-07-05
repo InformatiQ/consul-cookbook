@@ -16,6 +16,7 @@ supports 'solaris2'
 supports 'arch'
 supports 'windows'
 
+# build-essential is obsolete in chef 14+
 depends 'build-essential' # ~FC121
 depends 'nssm', '>= 3.42.0'
 depends 'golang'
