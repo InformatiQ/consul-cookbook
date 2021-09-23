@@ -42,3 +42,6 @@ default['consul']['service']['nssm_params'] = {
   'AppRotateOnline'  => 1,
   'AppRotateBytes'   => 20_000_000,
 }
+
+default['consul']['install']['binary']['archive_url'] = 'https://releases.hashicorp.com/consul/%{version}/%{basename}'
+default['consul']['install']['binary']['archive_basename'] = nil
