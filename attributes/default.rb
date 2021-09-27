@@ -8,6 +8,7 @@
 default['consul']['service_name'] = 'consul'
 default['consul']['service_user'] = 'consul'
 default['consul']['service_group'] = 'consul'
+default['consul']['service_shell'] = '/bin/false'
 default['consul']['create_service_user'] = true
 
 default['consul']['config']['path'] = join_path config_prefix_path, 'consul.json'
