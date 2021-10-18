@@ -8,6 +8,7 @@
 default['consul']['service_name'] = 'consul'
 default['consul']['service_user'] = 'consul'
 default['consul']['service_group'] = 'consul'
+default['consul']['service_shell'] = '/bin/false'
 default['consul']['create_service_user'] = true
 
 default['consul']['config']['path'] = join_path config_prefix_path, 'consul.json'
@@ -31,6 +32,8 @@ default['consul']['service']['config_dir'] = join_path config_prefix_path, 'conf
 
 default['consul']['version'] = '0.8.3'
 
+default['consul']['service']['systemd_params'] = {}
+
 # Windows only
 default['consul']['service']['nssm_params'] = {
   'AppDirectory'     => data_path,
@@ -40,3 +43,6 @@ default['consul']['service']['nssm_params'] = {
   'AppRotateOnline'  => 1,
   'AppRotateBytes'   => 20_000_000,
 }
+
+default['consul']['install']['binary']['archive_url'] = 'https://releases.hashicorp.com/consul/%{version}/%{basename}'
+default['consul']['install']['binary']['archive_basename'] = nil
