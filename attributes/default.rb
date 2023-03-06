@@ -10,6 +10,7 @@ default['consul']['service_user'] = 'consul'
 default['consul']['service_group'] = 'consul'
 default['consul']['service_shell'] = '/bin/false'
 default['consul']['create_service_user'] = true
+default['consul']['service']['action_on_update'] = :reload
 
 default['consul']['config']['path'] = join_path config_prefix_path, 'consul.json'
 default['consul']['config']['data_dir'] = data_path

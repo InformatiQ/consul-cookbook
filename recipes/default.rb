@@ -24,7 +24,7 @@ end
 service_name = node['consul']['service_name']
 config = consul_config service_name do
   node['consul']['config'].each_pair { |k, v| send(k.to_sym, v) }
-  notifies :reload, "consul_service[#{service_name}]", :delayed
+  notifies node['consul']['service']['action_on_update'], "consul_service[#{service_name}]", :delayed
 end
 
 install = consul_installation node['consul']['version'] do
