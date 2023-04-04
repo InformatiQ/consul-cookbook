@@ -140,6 +140,7 @@ property :tls_prefer_server_cipher_suites, equal_to: [true, false]
 property :translate_wan_addrs, equal_to: [true, false]
 property :ui, equal_to: [true, false]
 property :ui_dir, kind_of: String
+property :ui_config, [Hash, Mash]
 property :unix_sockets, kind_of: [Hash, Mash]
 property :verify_incoming, equal_to: [true, false]
 property :verify_incoming_https, equal_to: [true, false]
@@ -247,6 +248,7 @@ def params_to_json
   translate_wan_addrs
   ui
   ui_dir
+  ui_config
   unix_sockets
   verify_incoming
   verify_incoming_https
