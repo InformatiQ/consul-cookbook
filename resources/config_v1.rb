@@ -134,6 +134,7 @@ property :statsite_address, kind_of: String
 property :statsite_prefix, kind_of: String
 property :telemetry, kind_of: [Hash, Mash]
 property :syslog_facility, kind_of: String
+property :tls, kind_of: [Hash, Mash]
 property :tls_cipher_suites, kind_of: String
 property :tls_min_version, equal_to: %w(tls10 tls11 tls12)
 property :tls_prefer_server_cipher_suites, equal_to: [true, false]
@@ -242,6 +243,7 @@ def params_to_json
   start_join_wan
   syslog_facility
   telemetry
+  tls
   tls_cipher_suites
   tls_min_version
   tls_prefer_server_cipher_suites
