@@ -40,6 +40,7 @@ action :create do
 
   file new_resource.path do
     content new_resource.params_to_json
+    sensitive true
     unless platform?('windows')
       owner new_resource.user
       group new_resource.group
