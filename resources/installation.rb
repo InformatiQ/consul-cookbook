@@ -37,7 +37,7 @@ action :create do
   archive_path = node.join_path(Chef::Config[:file_cache_path], basename)
   remote_file archive_path do
     source format(attrs['archive_url'], version: new_resource.version, basename: basename)
-    checksum node.binary_checksum(node, new_resource.version)
+    checksum attrs['archive_checksum'] || nil
   end
 
   if archive_path.end_with?('.zip')
