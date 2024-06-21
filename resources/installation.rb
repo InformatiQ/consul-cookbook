@@ -38,6 +38,7 @@ action :create do
   remote_file archive_path do
     source format(attrs['archive_url'], version: new_resource.version, basename: basename)
     checksum attrs['archive_checksum'] || nil
+    cookbook attrs['archive_prefix'] || nil
   end
 
   if archive_path.end_with?('.zip')
